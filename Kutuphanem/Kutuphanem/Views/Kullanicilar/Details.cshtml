@@ -1,0 +1,73 @@
+﻿@model Kutuphanem.Models.Kullanici
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2 style="font-family:Gabriola;font-size:45px;"> <i class="glyphicon glyphicon-cloud-download"></i>Detaylar..</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal" style="font-family:Consolas;font-size:20px;">
+        <dt>
+            @Html.DisplayNameFor(model => model.KullaniciAdi):
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KullaniciAdi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AdSoyad):
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdSoyad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sifre):
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sifre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email):
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Adres):
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Adres)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Yas):
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Yas)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tip):
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tip)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Düzenle", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Geri Dön", "Index")
+</p>

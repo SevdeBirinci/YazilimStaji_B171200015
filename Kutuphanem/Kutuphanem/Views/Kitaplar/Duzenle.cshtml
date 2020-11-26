@@ -1,0 +1,45 @@
+﻿@using Kutuphanem.Models
+@model IEnumerable<Kutuphanem.Models.Kitap>
+
+@{
+    ViewBag.Title = "Duzenle";
+    Kutuphane db = new Kutuphane();
+    var sepet = db.Siparis.ToList();
+}
+<style>
+    @Html
+    {
+        color:white;
+    }
+</style>
+<h3 style="margin-left:450px; font-family:Gabriola;font-size:45px;"><i class="glyphicon glyphicon-edit"></i> Kitap Ayarları </h3>
+<hr />
+<div class="container">
+    <div class="row ">
+        @foreach (var item in Model)
+        {
+         @Html.AntiForgeryToken()
+        <div class="col-sm-4">
+            <div class="panel panel-primary col-s-10">
+                <div class="panel-heading">
+                    @item.KitapAdi
+                                                           </div>
+            </div>
+            <div class="panel-body"><img src="~/Images/KullaniciResimleri/@item.Resim" class="img-responsive" style="width:300px;height:350px; " alt="Image"></div>
+            <div class="panel-footer" style="height:50px;margin:10px">
+                <input type="hidden" name="id" value="@item.ID" />
+                <p style="color:black; margin-left:70px;margin-top:5px;">
+                    @Html.ActionLink("Düzenle", "Edit", new { item.ID })   |
+                    @Html.ActionLink("Detaylar", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Sil", "Delete", new { id = item.ID })
+                </p>
+            </div>
+        </div>
+
+        }
+
+    </div>
+</div>
+<br>
+<br>
+

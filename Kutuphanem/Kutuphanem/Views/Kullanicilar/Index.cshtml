@@ -1,0 +1,74 @@
+﻿@using Kutuphanem.Models
+@model IEnumerable<Kutuphanem.Models.Kullanici>
+
+@{
+    ViewBag.Title = "Index";
+    Kutuphane db = new Kutuphane();
+    var Kullanici = db.Kullanici.ToList();
+}
+
+<h2  style="font-family:Gabriola;font-size:45px;">Kullanıcılar</h2>
+
+<p>
+    @Html.ActionLink("Yeni Kullanıcı Oluştur", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.KullaniciAdi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdSoyad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sifre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Adres)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Yas)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tip)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.KullaniciAdi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdSoyad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sifre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Adres)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Yas)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tip)
+            </td>
+            <td>
+                @Html.ActionLink("Düzenle", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Detaylar", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Sil", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
+
+</table>
+

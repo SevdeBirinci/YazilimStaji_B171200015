@@ -1,0 +1,365 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+
+}
+<meta name="viewport" content="width=device-width" />
+<style>
+
+
+    .alert {
+        padding: 20px;
+        background-color: blueviolet;
+        color: white;
+    }
+
+    .closebtn {
+        margin-left: 15px;
+        color: white;
+        font-weight: bold;
+        float: right;
+        font-size: 22px;
+        line-height: 20px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+        .closebtn:hover {
+            color: black;
+        }
+
+
+    .carousel {
+        max-width: 1000px;
+        margin: auto;
+    }
+
+
+    .row {
+        margin: 8px -16px;
+    }
+
+        /* Add padding BETWEEN each column */
+        .row,
+        .row > .column {
+            padding: 8px;
+        }
+
+    /* Create four equal columns that floats next to each other */
+    .column {
+        float: left;
+        width: 25%;
+    }
+
+    /* Clear floats after rows */
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    /* Content */
+    .content {
+        background-color: white;
+        padding: 10px;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    /* Style the body */
+    /* Header/logo Title */
+    .header {
+        padding: 80px;
+        text-align: center;
+        background: #1abc9c;
+        color: white;
+    }
+
+        /* Increase the font size of the heading */
+        .header h1 {
+            font-size: 40px;
+        }
+
+    /* Style the top navigation bar */
+    .navbar {
+        overflow: hidden;
+        /*background-color: #333;*/
+    }
+
+        /* Style the navigation bar links */
+        .navbar a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+
+            /* Right-aligned link */
+            .navbar a.right {
+                float: right;
+            }
+
+            /* Change color on hover */
+            .navbar a:hover {
+                background-color: #ddd; /**/
+                color: black;
+            }
+
+    /* Column container */
+    .row {
+        display: -ms-flexbox; /* IE10 */
+        display: flex;
+        -ms-flex-wrap: wrap; /* IE10 */
+        flex-wrap: wrap;
+    }
+
+    .fakeimg {
+        /*margin:auto;
+            padding:initial;*/
+        width: 100%;
+        height: 50%;
+    }
+
+    /* Create two unequal columns that sits next to each other */
+    /* Sidebar/left column */
+    .side {
+        -ms-flex: 30%; /* IE10 */
+        flex: 30%;
+        background-color: #f1f1f1;
+        padding: 20px;
+    }
+
+    /* Main column */
+    .main {
+        -ms-flex: 70%; /* IE10 */
+        flex: 70%;
+        background-color: white;
+        padding: 20px;
+    }
+
+    .container {
+    }
+    /* Fake image, just for this example */
+    .fakeimg {
+        background-color: #aaa;
+        width: 100%;
+        padding: 20px;
+    }
+
+    /* Footer */
+    .footer {
+        padding: 20px;
+        text-align: center;
+        /*background: #ddd;*/
+    }
+
+    div [class="carousel slide"] {
+        width: auto;
+    }
+
+
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        min-height: 500px;
+        height: 500px;
+        margin: auto;
+        text-align: center;
+        font-family: arial;
+    }
+
+    .price {
+        color: grey;
+        font-size: 22px;
+    }
+
+    .card button {
+        border: none;
+        outline: 0;
+        padding: 12px;
+        color: white;
+        background-color: #000;
+        text-align: center;
+        cursor: pointer;
+        width: 100%;
+        font-size: 18px;
+    }
+
+
+        .card button:hover {
+            opacity: 0.7;
+        }
+
+    .jumbotron {
+        background-color: lightgrey;
+    }
+
+ 
+    .container1 {
+        border: 2px solid #dedede;
+        background-color: #f1f1f1;
+        border-radius: 5px;
+        padding: 10px;
+        margin: 10px 0;
+    }
+
+    .darker {
+        border-color: #ccc;
+        background-color: #ddd;
+    }
+
+    .container1::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+
+
+
+
+    .time-right {
+        float: right;
+        color: #aaa;
+    }
+
+    .time-left {
+        float: left;
+        color: #999;
+    }
+
+    .container1 img {
+        float: left;
+        max-width: 60px;
+        width: 100%;
+        margin-right: 20px;
+        border-radius: 50%;
+    }
+
+        .container1 img.right {
+            float: right;
+            margin-left: 20px;
+            margin-right: 0;
+        }
+
+</style>
+
+<div class="jumbotron">
+
+    <h1 style="outline-style"><span class="glyphicon glyphicon-book"></span>Kütüphanem</h1>
+    <p class="lead">
+        Bir çiçekle bahar olmaz,<br />
+        ama her bahar bir çiçekle başlar<span class="glyphicon glyphicon-star"></span>
+    </p>
+    <p><a href="/Kullanicilar/GirisYap" class="btn btn-primary btn-lg">Daha Fazla Bilgi İçin &raquo;</a></p>
+</div>
+
+<h2>Kütüphane Tasarımımız</h2>
+<p>Sizlere daha iyi bir hizmet sunmak için .</p>
+
+<!-- Portfolio Gallery Grid -->
+<div class="row">
+    <div class="column">
+        <div class="content">
+            <img src="~/Images/iç tasarım.jpeg" alt="Mountains" style=" height:220px;width:100% ">
+            <h3>Muazzam Mimari</h3>
+            <p>Muazzam Mimarisi sayesinde herkes tarafından büyük ilgi gören kütüphanemizde hem kitap satışı yapılmaktadır hem de kitap ödünç alma işlemi olmaktadır.</p>
+        </div>
+    </div>
+    <div class="column">
+        <div class="content">
+            <img src="~/Images/içyapısıKütüphane.jpeg" alt="Lights" style=" height:220px;width:100% ">
+            <h3>Bireysel Çalışma Alanı</h3>
+            <p>yalnız çalışmayı ayrıca daha çok sevenleriçin tasarlanan bu platform çok kullanışlı olup kitap okuma ve ders çalışmak için ldukça uygundur. .</p>
+        </div>
+    </div>
+    <div class="column">
+        <div class="content">
+            <img src="~/Images/içyaoı.jpeg" alt="Nature" style=" height:220px;width:100% ">
+            <h3>Çok fazla Kaynak</h3>
+            <p>
+                Kütüphanemizde geçmiş yıllara ait istenen eser kolaylıkla bulunmaktadır.
+                Ayrıca kitapların bulunduğu ortamda arayışı kolaylaştırmaktadır.
+            </p>
+        </div>
+    </div>
+    <div class="column">
+        <div class="content">
+            <img src="~/Images/içyaıı2.jpeg" alt="Mountains" style=" height:220px;width:100% ">
+            <h3>Manzara kütüphane</h3>
+            <p>Kütüphaneye ait özel bir bölümde manzara köşemiz bulunmaktadır. Öncede rezarvasyonla müşteri aldığımız bölümde içecek hizmeti de bulunmaktadır.</p>
+        </div>
+    </div>
+    <!-- END GRID -->
+</div>
+<div>
+    <div>
+        <h2 style="margin-left:420px;">Kütüphane Hizmetimiz</h2>
+        <h5 style="margin-left:490px;">Açıklama, August 4, 2020</h5>
+        <div class="fakeimg" style="margin-left:325px;padding:2px; width:510px;">
+            <img style=" padding:25px; width:500px;" src="~/Images/insan2.jpeg" />
+        </div>
+
+        <p> ..</p>
+        <p></p>
+        <br>
+        <h2 style="margin-left:450px;">Çalışma Alanlarımız</h2>
+        <h5 style="margin-left:515px;">Açıklama, may 2, 2020</h5>
+        <div class="fakeimg" style="margin-left:325px;padding:2px; width:510px;"><img style=" padding:25px; width:500px;" src="~/Images/insan.jpeg" /></div>
+        <br />
+        <p style="margin-left:310px;">Son derece konforlu olan çalışma alanlarımız herkes tarafından büyük ilgi görmektedir..</p>
+    </div>
+</div>
+
+<div class="content">
+    <h3  style="font-family:Gabriola;font-size:30px;">Diğer Çalışmalarımız</h3>
+    <p  style="font-family:'Bell MT';font-size:20px;">Yurt dışı ve yurtiçi heryere sıkıntısız ve kolay hizmet sağlamaktayız. </p>
+</div>
+
+<!-- END MAIN -->  
+<h3 style="font-family:Gabriola;font-size:40px; margin-left:250px;"> Online Olarak Sorularını Cevaplamak İster misin?<i class="fas fa-comment"></i></h3>
+    
+<div class="container1">
+    <img src="~/Images/admin.png" alt="Avatar" style="width:100px;height:100px; margin-left:25px;">
+    <br />
+    <label for="txtKullaniciAdi">Kullanıcı: </label> <br /> @Html.TextBox("txtKullaniciAdi")
+    <br />
+    <div class="form-group"> <label for="txtMessage">Not *</label> <textarea id="txtMessage" name="txtMessage" class="form-control" placeholder="Write your message here." rows="4" required="required" data-error="Please, leave us a message."></textarea> </div>
+    <br />
+    <button id="btnSendMessage" class="btn btn-success"style="margin-left:100px;">Mesaj Gönder</button>
+    <span class="time-right">@DateTime.Now</span>
+</div>
+<div id="messages"></div>
+<div class="footer">
+    <h2>
+        Bizimle İletişime Geçebilirsiniz
+        <a href="/Home/Contact"<h3>İletişim</h3>
+    </h2>
+</div>
+@section scripts{
+    <script src="~/Scripts/jquery.signalR-2.2.2.min.js"></script>
+    <script src="~/SignalR/Hubs"></script>
+    <script>
+
+        $(function () {
+            var chat = $.connection.chatHub;
+            var $KullaniciAdi = $('#txtKullaniciAdi');
+            var $message = $('#txtMessage');
+            var $messages = $('#messages');
+            $message.focus();
+            chat.client.sendMessage = function (ad, message) {
+                $messages.append('<li><strong>' + ad + '</strong>: ' + message + '</li>');
+            };
+            $.connection.hub.start().done(function () {
+                $('#btnSendMessage').click(function () {
+
+                    chat.server.send($KullaniciAdi.val(), $message.val());
+
+                    $message.val('').focus();
+                });
+            });
+        });
+
+    </script>
+}

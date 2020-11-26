@@ -1,0 +1,59 @@
+﻿
+@using Kutuphanem
+
+@model List<Kutuphanem.Models.Kitap>
+@{
+    ViewBag.Title = "Grafik";
+    Kutuphanem.Models.Kutuphane db = new Kutuphanem.Models.Kutuphane();
+
+}
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<div id="chartdiv" style="width: 700px; height: 400px;">
+</div>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.setOnLoadCallback(DrawonLoad);
+
+
+    function DrawonLoad() {
+        $(function () {
+            $.ajax({
+                type: 'GET',
+                url: '/Kitaplar/Grafik22',
+                success: function (chartsdata) {
+                    var data = new google.visualization.DataTable();
+
+                    data.addColumn('string', 'KitapAdi');
+                    data.addColumn('number', 'Miktar');
+
+                    for (var i = 0; i < chartsdata.length; i++) {
+                        data.addRow([chartsdata[i].KitapAdi, chartsdata[i].Miktar]);
+                    }
+
+                    var chart = new google.visualization.LineChart(document.getElementById('chartdiv'));
+
+                    chart.draw(data,
+                        {
+                            title: "Kitaplar Sütün Grafik",
+                            position: "top",
+                            fontsize: "14px",
+                            pieHole: 0.5,
+                            axisY: {
+                                title: "No. of Employees"
+                            }
+
+                        });
+
+                },
+                error: function () {
+                    alert("Error loading data! Please try again.");
+                }
+            });
+        })
+
+    }
+
+</script>
+

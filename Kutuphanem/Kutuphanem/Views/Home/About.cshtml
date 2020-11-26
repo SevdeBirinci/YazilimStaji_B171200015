@@ -1,0 +1,323 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+
+
+    * {
+        box-sizing: border-box;
+    }
+
+    img {
+        vertical-align: middle;
+    }
+
+    /* Position the image container (needed to position the left and right arrows) */
+    .container {
+        position: relative;
+    }
+
+    /* Hide the images by default */
+    .mySlides {
+        display: none;
+    }
+
+    /* Add a pointer when hovering over the thumbnail images */
+    .cursor {
+        cursor: pointer;
+    }
+
+    /* Next & previous buttons */
+    .prev,
+    .next {
+        cursor: pointer;
+        position: absolute;
+        top: 40%;
+        width: auto;
+        padding: 16px;
+        margin-top: -50px;
+        color: white;
+        font-weight: bold;
+        font-size: 20px;
+        border-radius: 0 3px 3px 0;
+        user-select: none;
+        -webkit-user-select: none;
+    }
+
+    /* Position the "next button" to the right */
+    .next {
+        right: 0;
+        border-radius: 3px 0 0 3px;
+    }
+
+        /* On hover, add a black background color with a little bit see-through */
+        .prev:hover,
+        .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+    /* Number text (1/3 etc) */
+    .numbertext {
+        color: #f2f2f2;
+        font-size: 12px;
+        padding: 8px 12px;
+        position: absolute;
+        top: 0;
+    }
+
+    /* Container for image text */
+    .caption-container {
+        text-align: center;
+        background-color: #222;
+        padding: 2px 16px;
+        color: white;
+    }
+
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    /* Six columns side by side */
+    .column {
+        float: left;
+        width: 16.66%;
+    }
+
+    /* Add a transparency effect for thumnbail images */
+    .demo {
+        opacity: 0.6;
+    }
+
+        .active,
+        .demo:hover {
+            opacity: 1;
+        }
+
+    *, *:before, *:after {
+        box-sizing: inherit;
+    }
+
+    .column1 {
+        float: left;
+        width: 33.3%;
+        margin-bottom: 16px;
+        padding: 0 8px;
+    }
+
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        margin: 8px;
+    }
+
+    .about-section {
+        padding: 50px;
+        text-align: center;
+        background-color: #474e5d;
+        color: white;
+    }
+
+    .container1 {
+        padding: 0 16px;
+    }
+
+        .container1::after, .row::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+    .title {
+        color: grey;
+    }
+
+    .button {
+        border: none;
+        outline: 0;
+        display: inline-block;
+        padding: 8px;
+        color: white;
+        background-color: #000;
+        text-align: center;
+        cursor: pointer;
+        width: 100%;
+    }
+
+        .button:hover {
+            background-color: #555;
+        }
+
+    h3 {
+        color: white;
+    }
+</style>
+<div class="about-section">
+    <h1>Hakkımızda </h1>
+    <p>
+        1990'dan beri yurtiçi ve yurtdışı kitap alım satımlarımzda kaliteye çok önem vererek birçok firmaya göre hep zirvede yer almayı başardık.
+        2013 yılında kurulan sitemizle bu zamana kadar hizmet verdik ve vermeye de devam ediyoruz..
+    </p>
+
+</div>
+
+
+<h2 style="text-align:center;font-family:Gabriola;font-size:60px;">Fotoğraf Galerisi <span class="glyphicon glyphicon-picture"></span></h2>
+<br />
+
+<div class="container">
+    <div class="mySlides">
+        <div class="numbertext">1 / 6</div>
+
+        <img src="~/Images/kitap7.jpeg" style="margin-left:220px;width:700px;height:400px;">
+    </div>
+
+    <div class="mySlides">
+        <div class="numbertext">2 / 6</div>
+
+        <img src="~/Images/kitap6.jpeg" style="margin-left:220px;width:700px;height:400px;" />
+    </div>
+
+    <div class="mySlides">
+        <div class="numbertext">3 / 6</div>
+        <img src="~/Images/kitap5.jpeg" style="margin-left: 220px; width: 700px; height: 400px;" />
+
+    </div>
+
+    <div class="mySlides">
+        <div class="numbertext">4 / 6</div>
+
+        <img src="~/Images/kiatp4.jpeg" style="margin-left:220px;width:700px;height:400px;" />
+
+    </div>
+
+    <div class="mySlides">
+        <div class="numbertext">5 / 6</div>
+        <img src="~/Images/kitap2.jpeg" style="margin-left:220px;width:700px;height:400px;" />
+
+    </div>
+
+    <div class="mySlides">
+        <div class="numbertext">6 / 6</div>
+        <img src="~/Images/Kitap.jpeg" style="margin-left:220px;width:700px;height:400px;" />
+
+    </div>
+
+    <a class="prev" onclick="plusSlides(-1)">❮</a>
+    <a class="next" onclick="plusSlides(1)">❯</a>
+
+    <div class="caption-container">
+        <p id="caption"></p>
+    </div>
+
+    <div class="row">
+        <div class="column">
+            <img class="demo cursor" src="~/Images/kitap7.jpeg" style="margin-left:15px;width:185px;height:150px;" onclick="currentSlide(1)" alt="Her Kitap Bir Ağaçtır.">
+        </div>
+        <div class="column">
+            <img class="demo cursor" src="~/Images/kitap6.jpeg" style="margin-left:4px;width:185px;height:150px;" onclick="currentSlide(2)" alt="Çok okuyan çok bilir">
+        </div>
+        <div class="column">
+            <img class="demo cursor" src="~/Images/kitap5.jpeg" style="width:185px;height:150px;margin-right:3px;margin-left:1px; " onclick="currentSlide(3)" alt="Güzel bakan güzel görür.">
+        </div>
+        <div class="column">
+            <img class="demo cursor" src="~/Images/kiatp4.jpeg" style="width:185px;height:150px; margin-left:2px;" onclick="currentSlide(4)" alt="Kitap dünyayı aydınlatır">
+        </div>
+        <div class="column">
+            <img class="demo cursor" src="~/Images/kitap2.jpeg" style=" margin-right:20px;width:185px;height:150px;" onclick="currentSlide(5)" alt="Gökyüzün kitaptır">
+        </div>
+        <div class="column">
+            <img class="demo cursor" src="~/Images/Kitap.jpeg" style=" margin-left:5px;margin-right: 15px; width: 180px; height: 150px;" onclick="currentSlide(6)" alt="Güzellikler senle başlar..">
+        </div>
+    </div>
+</div>
+<br />
+<br />
+<div class="about-section">
+    <h3 style="text-align:center;font-family:Gabriola;font-size:60px;">Takımımız <span class="glyphicon glyphicon-align-left"></span></h3>
+</div>
+<br />
+<br />
+<div class="row" style="margin-left:50px; width:1500px; height:500px;">
+    <div class="column">
+        <div class="card" style="height:350px; width:300px; margin-right:50px; margin-left:30px;">
+            <img src="/w3images/team1.jpg" alt="Sevde">
+            <div class="container1">
+                <h2 style="font-family:Gabriola;font-size:40px;">Sevde Nur Birinci</h2>
+                <p class="title" style="font-family:Gabriola;font-size:25px;">CEO & Kurucu</p>
+                <p>Sakarya Üniversitesi Bilişim Sistemleri Mühendisliği bölümünden mezun olan Kurucumuz şuana kadar birçok şirket kurup yeni ticaret alanlarına katılmıştır.</p>
+                <p>sevdenurbirinci@gmail.com</p>
+                <br />    <br />
+                <p><button class="button" style="width:250px;">İletişime Geç</button></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="column">
+        <div class="card" style="height:350px; width:300px; margin-right:50px;margin-left:115px;">
+            <img src="/w3images/team2.jpg" alt="Hilal">
+            <div class="container1">
+                <h2 style="font-family:Gabriola;font-size:40px;">Hilal Bayrak</h2>
+                <p class="title"style="font-family:Gabriola;font-size:25px;">Tasarım Direktörü</p>
+                <p>Sakarya Üniversitesi Bilişim Sistemleri Mühendisliği bölümünden mezun olan çalışanımız kurumuza girdiğinden beri çok büyük farklılıklar katarak gelişmemizi sağlamıştır</p>
+                <p>hilalbayrak@gmail.com</p>
+                <br />
+
+                <p><button class="button" style="width:250px;">İletişime Geç</button></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="column">
+        <div class="card" style="height:350px; width:300px; margin-left:200px;">
+            <img src="/w3images/team3.jpg" alt="Şevval">
+            <div class="container1">
+                <h2 style="font-family:Gabriola;font-size:40px;">Şevval Sena</h2>
+                <p class="title" style="font-family:Gabriola;font-size:25px;">Tasarımcı</p>
+                <p>İTÜ Grafk Taarım Bölümünden mezun olan tasarımcımız özgün tasarımlarla bizi memnun edip sürekli kendini geliştirmektedir.</p>
+                <p>sevvalsena@gmail.com</p>
+                <br />
+                <br />
+                <p><button class="button" style="width:250px;">İletişime Geç</button></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script>
+        var slideIndex = 1;
+        showSlides(slideIndex);
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            var i;
+            var slides = document.getElementsByClassName("mySlides");
+            var dots = document.getElementsByClassName("demo");
+            var captionText = document.getElementById("caption");
+            if (n > slides.length) { slideIndex = 1 }
+            if (n < 1) { slideIndex = slides.length }
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " active";
+            captionText.innerHTML = dots[slideIndex - 1].alt;
+        }
+    </script>
+}

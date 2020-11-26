@@ -1,0 +1,74 @@
+﻿@model Kutuphanem.Models.SatinAlmaSiparis
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2> <i class="glyphicon glyphicon-edit"></i> Detaylar</h2>
+
+<div>
+    <h4>SatinAlmaSiparis</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.KitapID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KitapID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KullaniciID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KullaniciID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Miktar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Miktar)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tutar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tutar)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KitapAdi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KitapAdi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Yazar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Yazar)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Kategori)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kategori)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

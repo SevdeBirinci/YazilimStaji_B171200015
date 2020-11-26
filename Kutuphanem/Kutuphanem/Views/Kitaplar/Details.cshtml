@@ -1,0 +1,63 @@
+﻿@model Kutuphanem.Models.Kitap
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2 style="font-family:Gabriola;font-size:60px;">Detaylar <span class="glyphicon glyphicon-check"></span></h2>
+
+<style>
+    .dl-horizontal{
+      
+      
+        font-family:Gabriola;
+        font-size:30px;
+    }
+</style>
+<div>
+  
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.KitapAdi):
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KitapAdi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Yazar):
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Yazar)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Kategori):
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kategori)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Miktar):
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Miktar)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fiyat):
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fiyat)
+        </dd>
+
+    </dl>
+</div>
+

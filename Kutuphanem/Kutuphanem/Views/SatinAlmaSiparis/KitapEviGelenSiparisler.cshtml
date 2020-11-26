@@ -1,0 +1,112 @@
+﻿@using Kutuphanem.Models
+@model IEnumerable<Kutuphanem.Models.SatinAlmaSiparis>
+
+@{
+    ViewBag.Title = "KitapEviGelenSiparisler";
+    Kutuphanem.Models.Kutuphane db = new Kutuphanem.Models.Kutuphane();
+}
+<h2>Gelen Siparişler</h2>
+<table class="table">
+    <tr><th>
+            @Html.DisplayNameFor(model => model.KitapID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KullaniciID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Miktar)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GelenMiktar)
+        </th>
+        <td>
+            İstenilen Miktar
+        </td>
+
+        <th>
+            Kitap Siparişi Ver
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        string ids = item.ID + "_siparis";
+        var siparis= db.Siparis.Where(s => s.ID == item.ID).FirstOrDefault();
+        var kullanici = db.Kullanici.Where(s => s.ID == item.KullaniciID).FirstOrDefault();
+        var kitap = db.Kitap.Where(s => s.ID == item.KitapID).FirstOrDefault();
+        <tr >
+            <td>
+                <label> <input type="checkbox" class="ck" data-id="@item.ID" name="" value=""> Seç</label>
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KitapID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KullaniciID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Miktar)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GelenMiktar)
+            </td>
+
+
+
+            <td style="color:white">
+                <input type="text" name="name" class="form-control" id="istenilenMiktar_@item.ID" value="@item.Miktar" />
+            </td>
+            <td style="color:white">
+                <input type="text" name="name" class="form-control" id="GirilenMiktar_@item.GelenMiktar" value="@item.GelenMiktar" />
+            </td>
+            <td>
+                <a class="btn btn-success" data-id="@item.ID" onclick="onaylaSatir(@item.ID)"><i class="glyphicon glyphicon-check"></i> Onayla</a>
+
+            </td>
+
+        </tr>
+    }
+
+</table>
+
+@section scripts{
+
+    <script>
+        function onaylaSatir(id) {
+            var miktar = $("#istenilenMiktar_" + id).val();
+            $.post("/Sepet/SiparisSatirOnayla", { id: id, miktar: miktar }, function (data) {
+                if (data == false) {
+                    window.location.reload();
+                }
+            });
+
+        }
+        function onayla() {
+            var seciliidler = [];
+            $('.ck').each(function () {
+                var satirId = $(this).attr("data-id");
+                var sec = $(this).is(':checked');
+                if (sec) {
+                    seciliidler.push(satirId);
+
+                }
+            });
+
+
+            $.post("/Sepet/SiparisOnayla", { secili: seciliidler }, function (data) {
+                if (data == true) {
+                    window.location.reload();
+                }
+            });
+
+            $('document').ready(function () {
+                $(':checkbox').attr('onclick', 'javascript:renkver(this)');
+            });
+
+        }
+
+    </script>
+
+}
+

@@ -1,0 +1,138 @@
+﻿@using Kutuphanem.Models
+@model IEnumerable<Kutuphanem.Models.Siparis>
+@{
+    ViewBag.Title = "Index";
+    Kutuphane db = new Kutuphane();
+  }
+<h2>Sepet<span class="glyphicon glyphicon-shopping-cart "></span></h2>
+<p>
+    <a style="border-bottom:inherit" href="/Kitaplar/Index">Alışverişe Devam Et</a>
+</p>
+<table class="table" name="table">
+    <thead>
+        <tr>
+            <td> Sipariş Onay</td>
+            <td>
+                Resim
+            </td>
+            <td>
+                Kitap Adı
+            </td>
+            <td>
+                Kullanıcı Adı
+            </td>
+            <td>
+                Miktar
+            </td>
+            <td>
+                Tutar
+            </td>
+            <td>
+                Sepetten Çıkar
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            var kullanici = db.Kullanici.Where(s => s.ID == item.KullaniciID).FirstOrDefault();
+            var kitap = db.Kitap.Where(s => s.ID == item.KitapID).FirstOrDefault();
+            string kitapadi = kitap == null ? "" : kitap.KitapAdi;
+            string resim = kitap == null ? "" : kitap.Resim;
+            double tutar = kitap == null ? 0 : Convert.ToDouble(kitap.Fiyat) * Convert.ToDouble(item.Miktar);
+            string kullaniciAdi = kullanici == null ? "" : kullanici.KullaniciAdi;
+            double toplam = tutar + tutar;
+            int stok = kitap == null ? 0 : Convert.ToInt32(db.Kitap.Where(s => s.ID == item.KitapID).FirstOrDefault().Miktar);
+
+            <tr name="tr">
+                <td>
+                    @if (item.SiparisOnay == true && item.Miktar > stok)
+                    {
+                    
+                        @*<label> <input type="checkbox" checked="checked" class="ck" data-id="@item.SiparisOnay" name="" value="true">SiparisOnay</label>*@
+
+                    }
+                    else
+                    {
+                        <label> <input type="checkbox" checked="checked" hidden class="ck" data-id="@item." name="" value="true">Onay Verilmedi</label>
+
+                        @*<label> <input type="checkbox" class="ck" data-id="@item.SiparisOnay" name="" value="true">SiparisOnay</label>*@
+                    }
+                </td>
+                <td>
+                    <img src="~/Images/KullaniciResimleri/@resim" width="50" alt="@kitapadi" />
+                </td>
+
+                <td>
+                    <input type="hidden" class="urun" name="name" value="@item.ID" />
+                    @kitapadi
+                </td>
+                <td>
+                    @kullaniciAdi
+                </td>
+                <td>
+                    @item.Miktar
+                </td>
+                <td>
+                    @tutar.ToString("c2")
+                </td>
+                <td>
+                    <div class="col-xs-2">  <button type="reset" onclick="Cikar(@item.ID)" class="btn btn-success"> Çıkar</button></div>
+                    @*<div class="col-xs-2">  <button type="reset" onclick="Onay(@item.ID)" class="btn btn-success"> Onay</button></div>*@
+                </td>
+                <td>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+<button onclick="Onay()" style="color:white; background-color:forestgreen;padding:5px 0; width:115px;height:40px;"> SİPARİŞ VER </button>
+<br />
+<div class="yukleme" style="color:black; "></div>
+<label style="margin-left:780px;"> Toplam :   </label>
+@section scripts
+{
+    <script>
+        $(".tetikleyici").click(function () {
+            var btn = $(this);
+            btn.fadeOut("fast");
+            $(".yukleme").text("SİPARİŞ VERİLİYOR..");
+
+            setInterval(function () {
+                btn.fadeIn("fast");
+                $(".yukleme").text("SİPARİŞ VERİLDİ..");
+            }, 3000);
+        });
+        function Cikar(id) {
+            $.post("/Sepet/Sil", { id: id }, function (data) {
+                if (data == true) {
+                    window.location.reload();
+                }
+            });
+        }
+        function Onay(id) {
+            var idler = [];
+            $(".urun").each(function (index) {
+                var id = $(this).val();
+                idler.push(id);
+            });
+
+
+            //            $.ajax({
+            //  type: "POST",
+            //  url: url,
+            //  data: data,
+            //  success: success,
+            //  dataType: dataType
+            //});
+            $.post("/Sepet/Onay", { id: idler }, function (data) {
+                if (data == true) {
+                    window.location.reload();
+                }
+            });
+        }
+
+
+    </script>
+}

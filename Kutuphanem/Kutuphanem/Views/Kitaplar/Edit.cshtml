@@ -1,0 +1,77 @@
+﻿@model Kutuphanem.Models.Kitap
+@{
+    ViewBag.Title = "Edit";
+}
+<h2>Edit</h2>
+@using (Html.BeginForm("Edit", "Kitaplar", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+<div class="form-horizontal">
+    <h4>Kitap</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.ID)
+    <div class="form-group">
+        @Html.LabelFor(model => model.KitapAdi, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.KitapAdi, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.KitapAdi, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Yazar, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Yazar, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Yazar, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Kategori, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Kategori, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Kategori, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Miktar, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Miktar, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Miktar, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Fiyat, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Fiyat, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Fiyat, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <img src="~/Images/KullaniciResimleri/@Model.Resim" class="img-responsive" style="width:150px;" alt="@Model.KitapAdi" />
+    </div>
+    <p>Resim Ekle</p>
+    <input type="file" name="UyeResimAdi" accept="Image/*" />
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" onclick="Edit(model => model.ID)" value="Edit" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+    }
+
+@section scripts
+{
+    <script>
+        function Edit(ID) {
+           
+            $.post("/Kitaplar/Edit", { ID: ID}, function (data) {
+                if (data == false) {
+                    window.location.reload();
+                }
+            });
+  </script>
+    }
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

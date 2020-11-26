@@ -1,0 +1,104 @@
+﻿@using Kutuphanem.Models
+@model IEnumerable<Kutuphanem.Models.Siparis>
+@{
+    ViewBag.Title = "KitapEviGelenSiparis";
+    Kutuphane db = new Kutuphane();
+}
+
+    <h2>KitapEvi'nden Gelen Sipariş Güncelleme Formu</h2>
+
+<table class="table">
+
+    <thead>
+        <tr>
+            <th>
+
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KitapID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KullaniciID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Miktar)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tutar)
+            </th>
+            <td>
+                İstenilen Miktar
+            </td>
+            <td>
+                Gelen Miktar
+            </td>
+            <th>
+                Güncelle
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            var kullanici = db.Kullanici.Where(s => s.ID == item.KullaniciID).FirstOrDefault();
+            var kitap = db.Kitap.Where(s => s.ID == item.KitapID).FirstOrDefault();
+            string kitapadi = kitap == null ? "" : kitap.KitapAdi;
+            string resim = kitap == null ? "" : kitap.Resim;
+            double tutar = kitap == null ? 0 : Convert.ToDouble(kitap.Fiyat) * Convert.ToDouble(item.Miktar);
+            string kullaniciAdi = kullanici == null ? "" : kullanici.KullaniciAdi;
+            var satinalma = db.SatinAlmaSiparis.Where(s => s.ID == item.ID).FirstOrDefault();
+            int gelenMiktar = satinalma == null ? 0 : Convert.ToInt32(satinalma.GelenMiktar);  
+        <tr>
+            <td> 
+                @item.SOnay
+            </td>
+            <td>
+                <input type="hidden" class="urun" name="name" value="@item.ID" />
+                @item.KitapID
+            </td>
+            <td>
+                @item.KullaniciID
+            </td>
+            <td>
+                @item.Miktar
+            </td>
+            <td>
+                @tutar.ToString("c2")
+            </td>
+            <td>
+                <input type="text" name="name" class="form-control" id="istenilenMiktar_@item.ID" value="@item.Miktar" DISABLED />
+            </td>
+            <td>
+                <input type="text" name="name" class="form-control" id="GelenMiktar_@item.ID" value=" @gelenMiktar" />
+
+            </td>
+            <td>
+                <a class="btn btn-success" data-id="@item.ID" onclick="SiparisGuncelle(@item.ID)"><i class="glyphicon glyphicon-check"></i>Güncelle</a>
+            </td>
+
+            <td>
+            </td>
+        </tr>
+        }
+    </tbody>
+    </table>
+    @section scripts
+    {
+        <script>
+            function SiparisGuncelle(id) {
+            var idler = [];
+                $(".urun").each(function (kitapEviGelenSiparis) {
+                    var id = $(this).val();
+                    idler.push(id);
+                });
+                var miktar = $("#GelenMiktar_" + id).val();
+                $.post("/Sepet/SiparisGuncelle", { id: idler, gelenMiktar: miktar }, function (data) {
+                    if (data == true) {
+                        window.location.reload();
+                    }
+                });
+            }
+        </script>
+        
+        
+        }

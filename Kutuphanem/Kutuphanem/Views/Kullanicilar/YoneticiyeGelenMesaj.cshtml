@@ -1,0 +1,92 @@
+﻿
+
+<style>
+    .container1 {
+        border: 2px solid #dedede;
+        background-color: #f1f1f1;
+        border-radius: 5px;
+        padding: 10px;
+        margin: 10px 0;
+    }
+
+    .darker {
+        border-color: #ccc;
+        background-color: #ddd;
+    }
+
+    .container1::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+
+
+
+
+    .time-right {
+        float: right;
+        color: #aaa;
+    }
+
+    .time-left {
+        float: left;
+        color: #999;
+    }
+
+    .container1 img {
+        float: left;
+        max-width: 60px;
+        width: 100%;
+        margin-right: 20px;
+        border-radius: 50%;
+    }
+
+        .container1 img.right {
+            float: right;
+            margin-left: 20px;
+            margin-right: 0;
+        }
+</style>
+<h2>Mesaj</h2>
+<div class="container1">
+    <img src="~/Images/admin.png" alt="Avatar" style="width:100px;height:100px; margin-left:25px;">
+    <br />
+    <label for="txtKullaniciAdi">Admin: </label> <br /> @Html.TextBox("txtKullaniciAdi")
+    <br />
+    <div class="form-group"> <label for="txtMessage">Not *</label> <textarea id="txtMessage" name="txtMessage" class="form-control" placeholder="Write your message here." rows="4" required="required" data-error="Please, leave us a message."></textarea> </div>
+    <br />
+    <button id="btnSendMessage" class="btn btn-success" style="margin-left:100px;">Mesaj Gönder</button>
+    <span class="time-right">@DateTime.Now</span>
+</div>
+<div id="messages"></div>
+@section scripts{
+    <script src="~/Scripts/jquery.signalR-2.2.2.min.js"></script>
+    <script src="~/SignalR/Hubs"></script>
+    <script>
+
+        $(function () {
+            var chat = $.connection.chatHub;
+            var $KullaniciAdi = $('#txtKullaniciAdi');
+            var $message = $('#txtMessage');
+            var $messages = $('#messages');
+            $message.focus();
+            chat.client.sendMessage = function (ad, message) {
+                $messages.append('<li><strong>' + ad + '</strong>: ' + message + '</li>');
+            };
+            $.connection.hub.start().done(function () {
+                $('#btnSendMessage').click(function () {
+
+                    chat.server.send($KullaniciAdi.val(), $message.val());
+
+                    $message.val('').focus();
+                });
+            });
+        });
+
+    </script>
+}
+
+@{
+    ViewBag.Title = "YoneticiyeGelenMesaj";
+    Layout = "/Views/Shared/_Layout.cshtml";
+}

@@ -1,0 +1,49 @@
+﻿@using Kutuphanem.Models
+@model IEnumerable<Kutuphanem.Models.Kitap>
+
+@{
+    ViewBag.Title = "Search";
+    Kutuphane db = new Kutuphane();
+    var sepet = db.Siparis.ToList();
+}
+
+<h2>Arama Yap</h2>
+
+@using (Html.BeginForm("Search", "Kitaplar", FormMethod.Get))
+{
+    @Html.TextBox("searching")<input type="submit" class="btn btn-group-toggle"value="Ara" />
+    }
+<br />
+<table class="table table-striped">
+
+    <tbody>
+        @if (Model.Count() == 0)
+        {
+            <tr>
+                <td colspan="3" style="color:red">
+                    Eşleşmiyor
+                </td>
+            </tr>
+        }
+        else
+        {
+    foreach (var item in Model)
+                    {
+                    <div class="col-sm-4">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">@item.KitapAdi</div>
+                        </div>
+                        <div class="panel-body"><img src="~/Images/KullaniciResimleri/@item.Resim" class="img-responsive" style="width:220px;height:250px;margin-left:50px; " alt="Image"></div>
+                        <div class="panel-footer" style="height:55px;">
+                            <input type="hidden" name="id" value="@item.ID" />
+                            <div class="col-xs-8"> <input class="form-control" type="number" name="adet" value="1" /></div>
+                            <div class="col-xs-2">  <button type="submit" class="btn btn-success"> Sepete Ekle</button></div>
+                        </div>
+                    </div>
+
+                    }
+                    }
+                   
+        </tbody>
+</table>
+

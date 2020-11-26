@@ -1,0 +1,97 @@
+﻿@using Kutuphanem.Models
+@model IEnumerable<Kutuphanem.Models.Kitap>
+@{
+    ViewBag.Title = "Index";
+    Kutuphane db = new Kutuphane();
+    var sepet = db.Siparis.Where(s=>s.SiparisOnay!=true).ToList();
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-1.6.4.min.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.1.0.min.js"></script>
+    <script src="~/SignalR/Hubs"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .container1 {
+            background-color: dimgray;
+            border-radius: 2px;
+            padding: 5px;
+            margin: 10px 0;
+            width: 1525px;
+            height: 40px;
+            position: absolute;
+            right: 0px;
+            top: 40px;
+        }
+    </style>
+</head>
+<body>
+  <div class="container1">
+
+        @using (Html.BeginForm("Search", "Kitaplar", FormMethod.Get))
+        {
+            <div class="input-group">
+                <input type="text" style="width:2500px; margin-left:540px;" placeholder="Ara.." name="searching">
+
+                <button type="submit" style="margin-left:5px;height:27px;width:150px;" class="btn btn-primary" value="Ara"> <span style="margin-left:2px;" class="glyphicon glyphicon-search"></span> </button>
+            </div>}
+    </div>
+    <br />
+    <div class="alert alert-success alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Hoşgeldiniz!</strong> Aradığınız kitapları tek tuşla bulabilir,hızlıca sipariş verebilirsiniz.<i class="far fa-heart"></i> 
+    </div> 
+    <h2 style="margin-left:15px; font-family:Gabriola;font-size:50px;margin-left:500px;">Kitaplar</h2>
+    <h3 style="margin-left:30px;"><a href="/Sepet">Sepet</a> <span>@sepet.Count</span></h3>
+
+
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            using (Html.BeginForm("Ekle", "Sepet", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <div class="col-sm-4">
+                    <br />
+                    <div class="panel panel-primary" style="color:white;">
+
+                        <div class="panel-heading" style="margin-left:auto; color:white;">
+                            @item.KitapAdi
+                        </div>
+                        <div class="panel-warning" style="margin-left:250px; color:white;">
+                            @Html.ActionLink("Detaylı Bilgi İçin..", "Details", new { id = item.ID })
+                        </div>
+                    </div>
+
+
+                          
+                    <div class="panel-body"><img src="~/Images/KullaniciResimleri/@item.Resim" class="img-responsive" style="width:220px;height:250px;margin-left:50px; " alt="Image"></div>
+                    <div class="panel-footer" style="height:55px;">
+                        <input type="hidden" name="id" value="@item.ID" />
+                        <div class="col-xs-8"> <input class="form-control" type="number" name="adet" value="1" /></div>
+                        @if (item.Miktar > 0)
+                        {
+                            <div class="col-xs-2">  <button type="submit" class="btn btn-success"> Sepete Ekle</button></div>
+                        }
+
+                    </div>
+                </div>
+
+            }
+        }
+
+
+    </div>
+
+</body>
+</html>
+
+
+

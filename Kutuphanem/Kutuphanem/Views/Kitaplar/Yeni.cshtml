@@ -1,0 +1,24 @@
+﻿@model Kutuphanem.Models.Kitap
+
+@{
+    ViewBag.Title = "Yeni";
+}
+
+<h2>Yeni</h2>
+kkkk
+<h2>Yeni Kayıt Ekle</h2>
+@using (Html.BeginForm("Yeni", "Kitaplar", FormMethod.Post, new { enctype = "multipart / form - data" }))
+{
+    <p>Kitap Adı</p>
+    @Html.TextBoxFor(a => a.KitapAdi)
+    <p>Yazar Adı</p>
+    @Html.TextBoxFor(a => a.Yazar)
+    <p>Kitap Fiyatı</p>
+    @Html.TextBoxFor(a => a.Fiyat)
+    <p>Kitap Miktarı</p>
+    @Html.TextBoxFor(a => a.Miktar)
+    <p>Resim Ekle</p>
+    <input type="file" name="UyeResimAdi" accept="Image/*" />
+    <input type="submit" value="Ekle" />
+}
+
